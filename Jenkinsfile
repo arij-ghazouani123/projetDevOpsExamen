@@ -90,7 +90,7 @@ pipeline {
         steps {
         script {
             withCredentials([string(credentialsId: 'password', variable: 'dockerhubpwd')]) {
-            sh 'docker login -u docker0922d -p ${dockerhubpwd}'
+            sh 'docker login -u arij.ghazouani22@gmail.com -p ${dockerhubpwd}'
                 }
             }
         }    
