@@ -10,12 +10,8 @@ pipeline {
                 checkout scm
             }
         }
-
-         
-     
-       
-    }
-    stage(' UNIT TESTES AND NOTIF') {
+    
+     stage(' UNIT TESTES AND NOTIF') {
             steps {
                 dir('DevOps_Project') {
                     script {
@@ -66,7 +62,7 @@ pipeline {
             }
             }
        }
-       
+
          stage('NEXUS') {
             steps {
                 dir('DevOps_Project') {
