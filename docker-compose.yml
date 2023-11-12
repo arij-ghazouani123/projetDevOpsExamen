@@ -9,7 +9,7 @@ services:
       MYSQL_DATABASE: devops
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - /DB:/docker-entrypoint-initdb.d/data.sql
+      - ./home/arijghazouani/Desktop/DB:/docker-entrypoint-initdb.d/data.sql
     networks:
       - internalnet
 
@@ -27,7 +27,7 @@ services:
     networks:
       - internalnet
     volumes: 
-      - /DB:/app/data
+      - ./home/arijghazouani/Desktop/DB:/app/data
 
   frontend:
     image: docker0922d/devopsfrontend
