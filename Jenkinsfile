@@ -66,6 +66,7 @@ pipeline {
             }
             }
        }
+       
          stage('NEXUS') {
             steps {
                 dir('DevOps_Project') {
