@@ -17,7 +17,7 @@ pipeline {
     }
     stage(' UNIT TESTES AND NOTIF') {
             steps {
-                dir('DevOpsBackend') {
+                dir('DevOps_Project') {
                     script {
                         try {
                             sh 'mvn clean install'
@@ -61,9 +61,74 @@ pipeline {
         
        stage('SONARQUBE') {
             steps {
-                dir('DevOpsBackend') {
-                sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=0000'
+                dir('DevOps_Project') {
+                sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=azerty123'
             }
+            }
+       }
+         stage('NEXUS') {
+            steps {
+                dir('DevOps_Project') {
+                sh 'mvn clean deploy -DskipTests'
+            }
+            }
+         }
+
+            stage('BBUILD FRONT') {
+                steps {
+                    dir('DevOps_Project_Front') {
+                        script {
+                            
+                            sh 'npm install -g npm@latest'
+                            sh 'npm install --force'
+                            sh 'npm run build'      
+                        }
+                    }
+                }
+            }
+
+      stage('LOGIN DOCKER') {
+        steps {
+        script {
+            withCredentials([string(credentialsId: 'password', variable: 'dockerhubpwd')]) {
+            sh 'docker login -u docker0922d -p ${dockerhubpwd}'
+                }
+            }
+        }    
+      }
+
+        stage('CREATE DOCKER IMAGE BACK') {
+            steps {
+                dir('DevOpsBackend-main') {
+                    script {
+                        sh 'docker build -t docker0922d/devopsbackend .'
+                        sh 'docker push docker0922d/devopsbackend'
+                    }
+                }
             }
         }
+        stage('CREATE DOCKER IMAGE FRONT') {
+            steps {
+                dir('DevOps_Project_Front') {
+                    script {
+                        sh 'docker build -t docker0922d/devopsfrontend .'
+                        sh 'docker push docker0922d/devopsfrontend'
+                        
+                    }
+                }
+            }
+        }
+        
+       stage('DEPLOY APP') {
+            steps {
+                
+                script {
+                    sh 'docker-compose -f docker-compose.yml up -d' 
+                    sh 'docker-compose -f docker-compose.yml start'                       
+                }
+                
+            }
+       }
+       }
+        
 }

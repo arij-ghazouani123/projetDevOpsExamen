@@ -30,7 +30,7 @@ services:
       - /DB:/app/data
 
   frontend:
-    image: arij/devopsfrontend
+    image: docker0922d/devopsfrontend
     depends_on:
       - spring
     networks:
