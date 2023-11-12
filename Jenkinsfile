@@ -89,8 +89,10 @@ pipeline {
       stage('LOGIN DOCKER') {
         steps {
         script {
-            withCredentials([string(credentialsId: 'password', variable: 'dockerhubpwd')]) {
-            sh 'docker login -u arij.ghazouani22@gmail.com -p ${dockerhubpwd}'
+          withCredentials([string(credentialsId: 'password', variable: 'dockerhubpwd')]) {
+                sh 'echo "docker123" | docker login -u arij.ghazouani22@gmail.com --password-stdin'
+        
+
                 }
             }
         }    
