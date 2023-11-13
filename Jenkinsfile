@@ -31,7 +31,7 @@ pipeline {
                     script {
                         def subject = "TESTES"
                         def body = "SUCCESS"
-                        def to = 'arij.ghazouani22@gmail.com'
+                        def to = ''
 
                         mail(
                             subject: subject,
@@ -44,7 +44,7 @@ pipeline {
                     script {
                         def subject = "Build Failure - ${currentBuild.fullDisplayName}"
                         def body = "The build has failed "
-                        def to = 'arij.ghazouani22@gmail.com'
+                        def to = ''
 
                         mail(
                             subject: subject,
