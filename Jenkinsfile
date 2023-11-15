@@ -26,7 +26,7 @@ pipeline {
                     }
                 }
             }
-         /*  post {
+           post {
                 success {
                     script {
                         def subject = "TESTES"
@@ -54,7 +54,7 @@ pipeline {
                     }
                 }
                 
-            }*/
+            }
         }
         
        stage('SONARQUBE') {
@@ -73,7 +73,7 @@ pipeline {
             }
          }
 
-            stage('BBUILD FRONT') {
+            stage('BUILD FRONT') {
                 steps {
                     dir('DevOps_Project_Front') {
                         script {
