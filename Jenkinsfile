@@ -73,7 +73,7 @@ pipeline {
             }
          }
 
-            stage('BUILD FRONT') {
+            stage('BUILD Frontend') {
                 steps {
                     dir('DevOps_Project_Front') {
                         script {
@@ -86,7 +86,7 @@ pipeline {
                 }
             }
 
-      stage('LOGIN DOCKER') {
+      stage('DOCKER') {
         steps {
         script {
           withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
