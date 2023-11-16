@@ -29,10 +29,10 @@ pipeline {
            post {
                 success {
                     script {
-                        def subject = "Test"
+                        def subject = "Build Tests"
                         def body = "Build Success"
-                        def to = 'arij.ghazouani@esprit.tn'
-                        def from = 'arij.ghazouani22@gmail.com'
+                        def to = 'arij.ghazouani22@gmail.com'
+
                         mail(
                             subject: subject,
                             body: body,
@@ -43,9 +43,9 @@ pipeline {
                 failure {
                     script {
                         def subject = "Build Failure - ${currentBuild.fullDisplayName}"
-                        def body = "Build Failed "
-                        def to = 'arij.ghazouani@esprit.tn'
-                        def from = 'arij.ghazouani22@gmail.com'
+                        def body = "Build failed "
+                        def to = 'arij.ghazouani22@gmail.com'
+
                         mail(
                             subject: subject,
                             body: body,
