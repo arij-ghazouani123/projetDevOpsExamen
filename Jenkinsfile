@@ -7,13 +7,13 @@ pipeline {
   
     
     stages {
-        stage('GIT') {
+        stage('Github') {
             steps {
                 checkout scm
             }
         }
     
-     stage(' UNIT TESTES AND NOTIF') {
+     stage(' Unit Tests - Email') {
             steps {
                 dir('DevOps_Project') {
                     script {
@@ -96,7 +96,7 @@ pipeline {
         }    
       }
 
-        stage('CREATE DOCKER IMAGE BACK') {
+        stage('DOCKER IMAGE BACKEND') {
             steps {
                 dir('DevOps_Project') {
                     script {
@@ -106,7 +106,7 @@ pipeline {
                 }
             }
         }
-        stage('CREATE DOCKER IMAGE FRONT') {
+        stage('DOCKER IMAGE FRONTEND') {
             steps {
                 dir('DevOps_Project_Front') {
                     script {
@@ -129,6 +129,6 @@ pipeline {
             }
        }
     }
-      
-        
+
+
 }
