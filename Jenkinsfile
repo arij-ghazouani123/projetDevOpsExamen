@@ -13,7 +13,7 @@ pipeline {
             }
         }
     
-     stage(' Unit Tests - Email') {
+     stage(' Unit Tests - Send Email') {
             steps {
                 dir('DevOps_Project') {
                     script {
